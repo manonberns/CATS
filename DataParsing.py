@@ -24,11 +24,11 @@ fileGroups = open(arrayGroups, "r")
 
 # Get the data from CGH Data file
 for line in fileData:
-D    lineTerm = line.rstrip("\n").split("\t")
+    lineTerm = line.rstrip("\n").split("\t")
     cghData.append(lineTerm)
 fileData.close()
 
-# Transpose the CGH Data matrix
+# Remove the unwanted data and transpose the CGH Data matrix
 cghDataMatrix = np.matrix(cghData)
 cghDataMatrixTrans = cghDataMatrix.transpose()
 cghDataMatrixTrans = np.delete(cghDataMatrixTrans , [1,2,3], 0)
