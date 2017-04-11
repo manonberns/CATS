@@ -43,6 +43,7 @@ for i in range(0,101):
 # Get the data from the array groups file
 for line in fileGroups:
     lineTerm = line.rstrip("\n").split("\t")
+    lineTerm[0] = lineTerm[0].replace('"',"")
     groupDataDict[lineTerm[0]] = lineTerm[1]
 fileGroups.close()
 
@@ -50,6 +51,7 @@ fileGroups.close()
 compiledData.append(["Array","Group", *cghDataList[0][1:]])
 for a,v in cghDataDict.items():
     if "Array" in a:
+        #print(groupDataDict[a])
         compiledData.append([a, groupDataDict[a],*cghDataDict[a]])
 
 # Print the final List into a file
@@ -60,3 +62,5 @@ for i in compiledData:
         outputFile.write("\t")
     outputFile.write("\n")
 outputFile.close()
+     
+  
