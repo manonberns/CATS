@@ -36,8 +36,7 @@ fileGroups.close()
 compiledMatrix=np.insert(cghDataMatrixTrans, 1, "-", axis=1 )
 
 for d in range(0,len(cghDataMatrixTrans)):
-	if str(cghDataMatrixTrans[d,0]) in str(groupDataDict.keys()):
+	if cghDataMatrixTrans[d,0] in groupDataDict.keys():
 		compiledMatrix[d,1]=groupDataDict[cghDataMatrixTrans[d,0]]
 	
 print (compiledMatrix)
-	
