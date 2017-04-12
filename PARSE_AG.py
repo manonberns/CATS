@@ -30,7 +30,6 @@ cghDataMatrixTrans = cghDataMatrix.transpose()
 for line in fileGroups:
     lineTerm = line.rstrip("\n").split("\t")
     groupDataDict[lineTerm[0]] = lineTerm[1]
-    print (groupDataDict)
 fileGroups.close()
 
 #compile matrix
