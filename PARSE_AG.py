@@ -2,13 +2,8 @@ import sys
 import numpy as np
 
 # Initialising variables
-arrayCGHData = ""
-arrayGroups = ""
 cghData = []
 groupDataDict = {}
-compiledData = []
-cghDataList = []
-cghDataDict = {}
 array_data = np.array([0,0])
 
 try:
