@@ -1,9 +1,9 @@
 import sys
 import numpy as np
 
-# Initialising variables
 cghData = []
 groupDataDict = {}
+
 array_data = np.array([0,0])
 
 try:
@@ -19,26 +19,26 @@ fileGroups = open(arrayGroups, "r")
 
 # Get the data from CGH Data file
 for line in fileData:
-    lineTerm = line.rstrip("\n").split("\t")
-    lineTerm[0] = lineTerm[0].replace('"',"")
-    cghData.append(lineTerm)
+	lineTerm = line.rstrip("\n").split("\t")
+	cghData.append(lineTerm)	   
 fileData.close()
 cghDataMatrix = np.matrix(cghData)
 cghDataMatrixTrans = cghDataMatrix.transpose()
+
 
 # Get the data from the clinical data file
 for line in fileGroups:
     lineTerm = line.rstrip("\n").split("\t")
     groupDataDict[lineTerm[0]] = lineTerm[1]
+    print (groupDataDict)
 fileGroups.close()
 
-
+#compile matrix
 compiledMatrix=np.insert(cghDataMatrixTrans, 1, "-", axis=1 )
 
 for d in range(0,len(cghDataMatrixTrans)):
-    string = str(cghDataMatrixTrans[d,0].replace('"',""))
-    if string in groupDataDict.keys():
-        compiledMatrix[d,1]=groupDataDict[string]
-
+	if str(cghDataMatrixTrans[d,0]) in str(groupDataDict.keys()):
+		compiledMatrix[d,1]=groupDataDict[cghDataMatrixTrans[d,0]]
 	
 print (compiledMatrix)
+	
