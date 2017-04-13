@@ -15,7 +15,7 @@ NUMBER_OF_CLASSES_CV = 3
 # import data
 def import_data():
     data=pd.read_table('Complied-Data.txt', sep='\t', delimiter=None, delim_whitespace=False, header=0, index_col=0)
-    X = (data.iloc[0:100, 1:-1])
+    X = (data.iloc[0:100, 1:150]) #NB: 150 is feature 1:149 for now, because of the long running time
     y = data.iloc[0:100,0]
     return(X,y)
 
@@ -25,10 +25,6 @@ def split_data():
     return(X_train, X_test, y_train, y_test)
     
 def SVC_crossvalidation(X,y):
-    # Build a classification task using 3 informative features
-    X, y = make_classification(n_samples=NUMBER_OF_SAMPLES_CV, n_features=NUMBER_OF_FEATURES_CV, n_informative=3,
-                               n_redundant=2, n_repeated=0, n_classes=NUMBER_OF_CLASSES_CV,
-                               n_clusters_per_class=1, random_state=0)
     # Create the RFE object and compute a cross-validated score.
     svc = SVC(kernel="linear")
     # The "accuracy" scoring is proportional to the number of correct
@@ -47,4 +43,3 @@ def SVC_crossvalidation(X,y):
 X,y = import_data()
 X_train, X_test, y_train, y_test = split_data()
 SVC_crossvalidation(X_train, y_train)
-
